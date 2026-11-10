@@ -26,7 +26,7 @@ export default function HomePage() {
           </div>
 
           {/* Hero Heading */}
-          <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-text-light dark:text-text-dark leading-[1.25] mb-3">
+          <h1 className="text-2xl min-[360px]:text-3xl sm:text-4xl font-extrabold tracking-tight text-text-light dark:text-text-dark leading-[1.25] mb-3">
             Welcome to{" "}
             <span className="bg-brand-gradient bg-clip-text text-transparent">
               ATTED AI

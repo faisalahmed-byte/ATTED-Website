@@ -34,7 +34,7 @@ export function MobileShell({
         )}
 
         {/* Scrollable app content with safe-area padding for mobile notches */}
-        <div className="flex-1 flex flex-col overflow-y-auto px-5 pt-[max(env(safe-area-inset-top),16px)] pb-[max(env(safe-area-inset-bottom),24px)] sm:px-6">
+        <div className="flex-1 flex flex-col overflow-y-auto px-4 sm:px-6 pt-[max(env(safe-area-inset-top),16px)] pb-[max(env(safe-area-inset-bottom),24px)]">
           {children}
         </div>
       </main>
