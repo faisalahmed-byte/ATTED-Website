@@ -57,7 +57,17 @@ export default function HomePage() {
             </Button>
           </Link>
 
-          <p className="text-center text-[11px] text-muted-light dark:text-muted-dark pt-3">
+          <div className="text-center pt-1">
+            <Link
+              href="/database"
+              className="inline-flex items-center gap-1 text-xs font-semibold text-primary hover:underline py-1"
+            >
+              <span>View Live PostgreSQL Records</span>
+              <ArrowRight className="w-3 h-3" />
+            </Link>
+          </div>
+
+          <p className="text-center text-[11px] text-muted-light dark:text-muted-dark pt-2">
             Protected by enterprise encryption &bull; ATTED AI v1.0
           </p>
         </div>
