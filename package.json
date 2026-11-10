@@ -11,7 +11,9 @@
     "lint": "next lint",
     "db:generate": "prisma generate",
     "db:push": "prisma db push",
-    "db:migrate": "prisma migrate dev"
+    "db:migrate": "prisma migrate dev",
+    "db:view": "node scripts/check-db.js",
+    "db:studio": "prisma studio"
   },
   "keywords": [],
   "author": "",
