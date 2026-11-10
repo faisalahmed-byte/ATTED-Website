@@ -1,0 +1,56 @@
+[
+  {
+    "id": "378ca408-cbeb-421d-862e-3906772bee99",
+    "name": "Alexander Vance, Ph.D.",
+    "email": "alexander.1794327412592@example.com",
+    "passwordHash": "$2b$12$Xe6Do/lK4Gwo60Aufr.wDO4aclRFdsWcx2FlRtmX40PoijH4vtMPW",
+    "phone": "+1 (555) 890-1234",
+    "bio": "Chief AI Architect at Ated AI. Passionate about sleek mobile interfaces.",
+    "createdAt": "2026-11-10T16:16:53.074Z",
+    "updatedAt": "2026-11-10T16:16:53.106Z"
+  },
+  {
+    "id": "d755fa32-0fb1-4230-a06e-c499ca371e91",
+    "name": "FAISAL",
+    "email": "faisalahmed.060528@gmail.com",
+    "passwordHash": "$2b$12$BR/ympQ7h8n5iJSspcfLZe/yY5gpAO7fa4i.Ouo1bOrHnptp0VuMm",
+    "avatarUrl": null,
+    "phone": null,
+    "bio": null,
+    "createdAt": "2026-11-10T16:28:43.905Z",
+    "updatedAt": "2026-11-10T16:28:43.905Z"
+  },
+  {
+    "id": "0cdefa44-ded7-439c-8835-7a7daffea9c9",
+    "name": "Alexander Vance, Ph.D.",
+    "email": "alexander.1794328590145@example.com",
+    "passwordHash": "$2b$12$swtH7akfOiLJW2OMHfaSjewXs01ok.tFvBmOeZv7u4RnffqnfFRou",
+    "avatarUrl": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80",
+    "phone": "+1 (555) 890-1234",
+    "bio": "Chief AI Architect at Atted AI. Passionate about sleek mobile interfaces.",
+    "createdAt": "2026-11-10T16:36:31.635Z",
+    "updatedAt": "2026-11-10T16:36:33.203Z"
+  },
+  {
+    "id": "831cd16d-fb0b-433a-9b30-7b7a4b2a74b9",
+    "name": "Alexander Vance, Ph.D.",
+    "email": "alexander.1794328695248@example.com",
+    "passwordHash": "$2b$12$bOA4VkofT3tORjyHlC6zn.6B5UVQskZU1qVZRYupMzDD0w/OwiLca",
+    "avatarUrl": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80",
+    "phone": "+1 (555) 890-1234",
+    "bio": "Chief AI Architect at Atted AI. Passionate about sleek mobile interfaces.",
+    "createdAt": "2026-11-10T16:38:16.486Z",
+    "updatedAt": "2026-11-10T16:38:17.737Z"
+  },
+  {
+    "id": "71fd546a-c55e-456f-a41e-e9ad0c13ed12",
+    "name": "Alexander Vance, Ph.D.",
+    "email": "alexander.1794328987626@example.com",
+    "passwordHash": "$2b$12$gsVmq/R8088PIYL0SESDGeUt90puVPe5EptvlkiwZFInI014ZcfTm",
+    "avatarUrl": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80",
+    "phone": "+1 (555) 890-1234",
+    "bio": "Chief AI Architect at Atted AI. Passionate about sleek mobile interfaces.",
+    "createdAt": "2026-11-10T16:43:09.166Z",
+    "updatedAt": "2026-11-10T16:43:10.690Z"
+  }
+]
