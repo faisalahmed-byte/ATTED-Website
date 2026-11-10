@@ -31,15 +31,15 @@ export function Header({
           </Link>
         ) : showBrand ? (
           <Link href="/" className="flex items-center gap-2.5 group">
-            <div className="w-9 h-9 rounded-full overflow-hidden bg-black flex items-center justify-center shadow-md ring-1 ring-border-light dark:ring-border-dark group-hover:scale-105 transition-transform">
+            <div className="w-9 h-9 rounded-full overflow-hidden bg-black flex items-center justify-center shadow-md ring-1.5 ring-amber-400/50 shadow-amber-500/10 group-hover:scale-105 transition-transform">
               <img
                 src="/logo.png"
-                alt="ATTED AI Logo"
+                alt="Atedd AI Logo"
                 className="w-full h-full object-cover"
               />
             </div>
-            <span className="font-extrabold text-lg tracking-wider text-text-light dark:text-text-dark">
-              ATTED AI
+            <span className="font-extrabold text-lg tracking-tight text-text-light dark:text-text-dark">
+              Atedd AI
             </span>
           </Link>
         ) : null}

@@ -30,7 +30,7 @@ export function Avatar({
     <div className="relative inline-flex items-center justify-center shrink-0">
       <div
         className={cn(
-          "rounded-full bg-brand-gradient text-white flex items-center justify-center shadow-brand-glow select-none ring-4 ring-white dark:ring-surfaceCard-dark overflow-hidden",
+          "rounded-full bg-brand-gradient text-white flex items-center justify-center shadow-brand-glow select-none ring-2 ring-amber-400/50 shadow-amber-500/10 dark:ring-amber-400/60 overflow-hidden",
           sizeClasses[size],
           className
         )}
@@ -47,7 +47,7 @@ export function Avatar({
       </div>
       {showBadge && (
         <span
-          className="absolute bottom-0 right-0 w-3.5 h-3.5 bg-emerald-500 border-2 border-white dark:border-surfaceCard-dark rounded-full"
+          className="absolute bottom-0 right-0 w-3.5 h-3.5 bg-emerald-500 border-2 border-white dark:border-surfaceCard-dark rounded-full shadow-sm"
           title="Online"
         />
       )}

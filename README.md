@@ -1,6 +1,6 @@
-# ATTED AI — Mobile Web App
+# Atedd AI — Mobile Web App
 
-A clean, modern, client-ready mobile-first web application for **ATTED AI**, built with **Next.js 16 (App Router)**, **Tailwind CSS**, **Prisma ORM**, and **PostgreSQL**.
+A clean, modern, client-ready mobile-first web application for **Atedd AI**, built with **Next.js 16 (App Router)**, **Tailwind CSS**, **Prisma ORM**, and **PostgreSQL**.
 
 - **Live URL**: [https://atted-website.vercel.app](https://atted-website.vercel.app)
 - **GitHub Repository**: [https://github.com/faisalahmed-byte/ATTED-Website](https://github.com/faisalahmed-byte/ATTED-Website)
@@ -11,7 +11,7 @@ A clean, modern, client-ready mobile-first web application for **ATTED AI**, bui
 
 | # | Requirement | Implementation Details |
 | :--- | :--- | :--- |
-| **1** | **Landing page** which says "Welcome to ATTED AI" and login, signup buttons | [`src/app/page.tsx`](file:///src/app/page.tsx) featuring official gold circular logo, headline **"Welcome to ATTED AI"**, and distinct full-width **Sign Up** and **Login** call-to-action buttons. |
+| **1** | **Landing page** which says "Welcome to Atedd AI" and login, signup buttons | [`src/app/page.tsx`](file:///src/app/page.tsx) featuring official gold circular logo, headline **"Welcome to Atedd AI"**, and distinct full-width **Sign Up** and **Login** call-to-action buttons. |
 | **2** | **Login page with registration** | [`src/app/login/page.tsx`](file:///src/app/login/page.tsx) and [`src/app/signup/page.tsx`](file:///src/app/signup/page.tsx) with real-time validation, password visibility toggle, autofocus, loading states, and redirect loops. |
 | **3** | **Profile page** with a bio, profile pic, and an edit button which works | [`src/app/dashboard/page.tsx`](file:///src/app/dashboard/page.tsx) displays avatar, full name, email, phone, and bio. Clicking **Edit Profile** navigates to [`src/app/dashboard/edit/page.tsx`](file:///src/app/dashboard/edit/page.tsx) where users can change their profile picture (upload device file or choose presets), edit bio (with live 250-character limit counter), and update phone/name. |
 | **4** | **Use PostgreSQL for database** | 100% PostgreSQL via Prisma ORM ([`prisma/schema.prisma`](file:///prisma/schema.prisma)). The `users` table stores UUID `id`, `name`, `email`, `passwordHash` (bcrypt salt 12), `avatarUrl`, `phone`, `bio`, `createdAt`, and `updatedAt`. |
@@ -154,4 +154,4 @@ Verifies:
 ---
 
 ## 📄 License
-ISC © ATTED AI
+ISC © Atedd AI

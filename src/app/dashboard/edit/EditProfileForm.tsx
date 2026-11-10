@@ -135,7 +135,7 @@ export function EditProfileForm({ initialUser }: { initialUser: InitialUserData 
       {/* Profile Picture Section */}
       <div className="flex flex-col items-center pb-3">
         <div className="relative group cursor-pointer" onClick={() => fileInputRef.current?.click()}>
-          <Avatar name={name} src={avatarUrl} size="xl" className="ring-4 ring-primary/20" />
+          <Avatar name={name} src={avatarUrl} size="xl" className="ring-2 ring-amber-400/50 shadow-md shadow-amber-500/10" />
           <div className="absolute inset-0 rounded-full bg-black/40 flex flex-col items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-opacity">
             <Camera className="w-6 h-6 mb-1" />
             <span className="text-[10px] font-semibold">Change</span>
@@ -169,7 +169,7 @@ export function EditProfileForm({ initialUser }: { initialUser: InitialUserData 
           <button
             type="button"
             onClick={() => fileInputRef.current?.click()}
-            className="text-xs font-semibold text-primary dark:text-indigo-400 hover:underline"
+            className="text-xs font-semibold text-primary dark:text-indigo-300 hover:text-indigo-600 dark:hover:text-indigo-200 hover:underline"
           >
             Upload Photo
           </button>

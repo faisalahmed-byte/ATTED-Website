@@ -3,12 +3,12 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 
 export const metadata: Metadata = {
-  title: "ATTED AI - Intelligent Web Experience",
-  description: "A premium, mobile-first intelligence platform crafted for seamless usability.",
+  title: "Atedd AI - Intelligent Web Experience",
+  description: "A modern, mobile-first intelligence platform crafted for seamless usability.",
   appleWebApp: {
     capable: true,
     statusBarStyle: "black-translucent",
-    title: "ATTED AI",
+    title: "Atedd AI",
   },
   icons: {
     icon: "/logo.png",

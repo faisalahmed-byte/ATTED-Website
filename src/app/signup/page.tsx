@@ -3,7 +3,16 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { User, Mail, Lock, Sparkles, AlertCircle } from "lucide-react";
+import {
+  User,
+  Mail,
+  Lock,
+  Eye,
+  EyeOff,
+  ArrowRight,
+  AlertCircle,
+  Phone,
+} from "lucide-react";
 import { MobileShell } from "@/components/layout/MobileShell";
 import { Header } from "@/components/layout/Header";
 import { Input } from "@/components/ui/Input";
@@ -14,7 +23,9 @@ export default function SignupPage() {
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
   const [globalError, setGlobalError] = useState<string | null>(null);
@@ -30,15 +41,19 @@ export default function SignupPage() {
     }
 
     if (!email.trim()) {
-      errs.email = "Email is required";
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) {
+      errs.email = "Email address is required";
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       errs.email = "Please enter a valid email address";
+    }
+
+    if (phone && phone.trim().length > 25) {
+      errs.phone = "Phone number is too long";
     }
 
     if (!password) {
       errs.password = "Password is required";
     } else if (password.length < 8) {
-      errs.password = "Password must be at least 8 characters";
+      errs.password = "Password must be at least 8 characters long";
     }
 
     setErrors(errs);
@@ -60,6 +75,7 @@ export default function SignupPage() {
         body: JSON.stringify({
           name: name.trim(),
           email: email.trim(),
+          phone: phone.trim() || undefined,
           password,
         }),
       });
@@ -67,39 +83,49 @@ export default function SignupPage() {
       const data = await res.json();
 
       if (!res.ok) {
-        setGlobalError(data.error || "Signup failed. Please try again.");
+        setGlobalError(data.error || "Failed to create account.");
         setIsLoading(false);
         return;
       }
 
-      // Successful signup, redirect directly to dashboard
-      router.push("/dashboard");
-      router.refresh();
+      // Automatically sign in upon registration
+      const loginRes = await fetch("/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: email.trim(), password }),
+      });
+
+      if (loginRes.ok) {
+        router.push("/dashboard");
+        router.refresh();
+      } else {
+        router.push("/login?registered=true");
+      }
     } catch {
-      setGlobalError("Network error. Please check your connection and try again.");
+      setGlobalError("Unable to connect to server. Please try again.");
       setIsLoading(false);
     }
   };
 
   return (
     <MobileShell>
-      <div className="flex flex-col min-h-full justify-between pb-2">
-        <Header backHref="/" title="Create Account" />
+      <div className="flex flex-col min-h-full justify-between pb-6">
+        <Header backHref="/" />
 
-        <div className="flex-1 my-auto py-2">
+        <div className="flex-1 flex flex-col justify-center py-2 animate-fadeIn">
           {/* Welcome Text */}
           <div className="mb-6 text-left">
-            <div className="w-12 h-12 rounded-full overflow-hidden bg-black p-0.5 shadow-md ring-2 ring-primary/20 mb-3 select-none">
+            <div className="w-12 h-12 rounded-full overflow-hidden bg-black p-0.5 shadow-md ring-2 ring-amber-400/50 shadow-amber-500/10 mb-3 select-none">
               <img
                 src="/logo.png"
-                alt="ATTED AI Logo"
+                alt="Atedd AI Logo"
                 className="w-full h-full object-cover rounded-full"
               />
             </div>
             <h2 className="text-2xl font-bold tracking-tight text-text-light dark:text-text-dark">
-              Join ATTED AI
+              Join Atedd AI
             </h2>
-            <p className="text-sm text-muted-light dark:text-muted-dark mt-1">
+            <p className="text-sm text-slate-500 dark:text-slate-300 mt-1">
               Enter your details to start your intelligent workspace.
             </p>
           </div>
@@ -117,7 +143,7 @@ export default function SignupPage() {
             <Input
               label="Full Name"
               type="text"
-              placeholder="e.g. Alexander Vance"
+              placeholder="e.g. Faisal Ahmed"
               value={name}
               onChange={(e) => {
                 setName(e.target.value);
@@ -132,7 +158,7 @@ export default function SignupPage() {
             <Input
               label="Email Address"
               type="email"
-              placeholder="alexander@example.com"
+              placeholder="faisal@example.com"
               value={email}
               onChange={(e) => {
                 setEmail(e.target.value);
@@ -145,17 +171,45 @@ export default function SignupPage() {
             />
 
             <Input
+              label="Phone Number"
+              type="tel"
+              placeholder="+1 (555) 234-5678"
+              value={phone}
+              onChange={(e) => {
+                setPhone(e.target.value);
+                if (errors.phone) setErrors({ ...errors, phone: "" });
+              }}
+              error={errors.phone}
+              hint="Optional"
+              leftIcon={<Phone className="w-5 h-5" />}
+              autoComplete="tel"
+            />
+
+            <Input
               label="Password"
-              type="password"
-              placeholder="Min 8 characters"
+              type={showPassword ? "text" : "password"}
+              placeholder="At least 8 characters"
               value={password}
               onChange={(e) => {
                 setPassword(e.target.value);
                 if (errors.password) setErrors({ ...errors, password: "" });
               }}
               error={errors.password}
-              hint="Must be at least 8 characters long"
               leftIcon={<Lock className="w-5 h-5" />}
+              rightIcon={
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="focus:outline-none hover:text-primary transition-colors"
+                  aria-label={showPassword ? "Hide password" : "Show password"}
+                >
+                  {showPassword ? (
+                    <EyeOff className="w-5 h-5" />
+                  ) : (
+                    <Eye className="w-5 h-5" />
+                  )}
+                </button>
+              }
               autoComplete="new-password"
               required
             />
@@ -166,7 +220,7 @@ export default function SignupPage() {
                 variant="primary"
                 size="lg"
                 isLoading={isLoading}
-                rightIcon={<Sparkles className="w-4 h-4 ml-1" />}
+                rightIcon={<ArrowRight className="w-5 h-5 ml-1" />}
               >
                 Create Account
               </Button>
@@ -176,18 +230,20 @@ export default function SignupPage() {
 
         {/* Footer Switch */}
         <div className="pt-4 text-center">
-          <p className="text-sm text-muted-light dark:text-muted-dark">
+          <p className="text-sm text-slate-500 dark:text-slate-300">
             Already have an account?{" "}
             <Link
               href="/login"
-              className="font-semibold text-primary dark:text-indigo-400 hover:underline inline-flex items-center"
+              className="font-semibold text-primary dark:text-indigo-300 hover:text-indigo-600 dark:hover:text-indigo-200 hover:underline inline-flex items-center"
             >
               Sign In
             </Link>
+          </p>
+          <p className="text-[11px] text-slate-400 dark:text-slate-400 pt-3">
+            Your data is secure &bull; Atedd AI v1.0
           </p>
         </div>
       </div>
     </MobileShell>
   );
 }
-

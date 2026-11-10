@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { Mail, Lock, ArrowRight, AlertCircle } from "lucide-react";
+import { Mail, Lock, Eye, EyeOff, ArrowRight, AlertCircle } from "lucide-react";
 import { MobileShell } from "@/components/layout/MobileShell";
 import { Header } from "@/components/layout/Header";
 import { Input } from "@/components/ui/Input";
@@ -14,6 +14,7 @@ export default function LoginPage() {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
   const [globalError, setGlobalError] = useState<string | null>(null);
@@ -23,8 +24,8 @@ export default function LoginPage() {
     const errs: { [key: string]: string } = {};
 
     if (!email.trim()) {
-      errs.email = "Email is required";
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) {
+      errs.email = "Email address is required";
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       errs.email = "Please enter a valid email address";
     }
 
@@ -48,48 +49,45 @@ export default function LoginPage() {
       const res = await fetch("/api/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          email: email.trim(),
-          password,
-        }),
+        body: JSON.stringify({ email: email.trim(), password }),
       });
 
       const data = await res.json();
 
       if (!res.ok) {
-        setGlobalError(data.error || "Login failed. Check your credentials.");
+        setGlobalError(data.error || "Invalid email or password.");
         setIsLoading(false);
         return;
       }
 
-      // Success -> Redirect straight to /dashboard
+      // Success -> Redirect to profile dashboard
       router.push("/dashboard");
       router.refresh();
     } catch {
-      setGlobalError("Network error. Please check your connection and try again.");
+      setGlobalError("Unable to connect to server. Please try again.");
       setIsLoading(false);
     }
   };
 
   return (
     <MobileShell>
-      <div className="flex flex-col min-h-full justify-between pb-2">
-        <Header backHref="/" title="Welcome Back" />
+      <div className="flex flex-col min-h-full justify-between pb-6">
+        <Header backHref="/" />
 
-        <div className="flex-1 my-auto py-2">
+        <div className="flex-1 flex flex-col justify-center py-2 animate-fadeIn">
           {/* Welcome Text */}
           <div className="mb-6 text-left">
-            <div className="w-12 h-12 rounded-full overflow-hidden bg-black p-0.5 shadow-md ring-2 ring-primary/20 mb-3 select-none">
+            <div className="w-12 h-12 rounded-full overflow-hidden bg-black p-0.5 shadow-md ring-2 ring-amber-400/50 shadow-amber-500/10 mb-3 select-none">
               <img
                 src="/logo.png"
-                alt="ATTED AI Logo"
+                alt="Atedd AI Logo"
                 className="w-full h-full object-cover rounded-full"
               />
             </div>
             <h2 className="text-2xl font-bold tracking-tight text-text-light dark:text-text-dark">
-              Sign In to ATTED AI
+              Sign In to Atedd AI
             </h2>
-            <p className="text-sm text-muted-light dark:text-muted-dark mt-1">
+            <p className="text-sm text-slate-500 dark:text-slate-300 mt-1">
               Enter your credentials to access your dashboard.
             </p>
           </div>
@@ -121,8 +119,8 @@ export default function LoginPage() {
 
             <Input
               label="Password"
-              type="password"
-              placeholder="Enter your password"
+              type={showPassword ? "text" : "password"}
+              placeholder="••••••••"
               value={password}
               onChange={(e) => {
                 setPassword(e.target.value);
@@ -130,6 +128,20 @@ export default function LoginPage() {
               }}
               error={errors.password}
               leftIcon={<Lock className="w-5 h-5" />}
+              rightIcon={
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="focus:outline-none hover:text-primary transition-colors"
+                  aria-label={showPassword ? "Hide password" : "Show password"}
+                >
+                  {showPassword ? (
+                    <EyeOff className="w-5 h-5" />
+                  ) : (
+                    <Eye className="w-5 h-5" />
+                  )}
+                </button>
+              }
               autoComplete="current-password"
               required
             />
@@ -150,18 +162,20 @@ export default function LoginPage() {
 
         {/* Footer Link */}
         <div className="pt-4 text-center">
-          <p className="text-sm text-muted-light dark:text-muted-dark">
+          <p className="text-sm text-slate-500 dark:text-slate-300">
             Don&apos;t have an account?{" "}
             <Link
               href="/signup"
-              className="font-semibold text-primary dark:text-indigo-400 hover:underline inline-flex items-center"
+              className="font-semibold text-primary dark:text-indigo-300 hover:text-indigo-600 dark:hover:text-indigo-200 hover:underline inline-flex items-center"
             >
               Sign Up
             </Link>
+          </p>
+          <p className="text-[11px] text-slate-400 dark:text-slate-400 pt-3">
+            Your data is secure &bull; Atedd AI v1.0
           </p>
         </div>
       </div>
     </MobileShell>
   );
 }
-
