@@ -34,7 +34,7 @@ export default async function EditProfilePage() {
 
         {/* Reassurance Footer */}
         <p className="text-center text-xs text-[#777777] dark:text-[#A3A3A3] py-4">
-          ATTED AI &bull; Encrypted Session
+          ATEDD AI &bull; Encrypted Session
         </p>
       </div>
     </MobileShell>

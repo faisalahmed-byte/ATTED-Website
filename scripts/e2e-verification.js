@@ -3,7 +3,7 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 async function runTests() {
-  console.log("=== STARTING ATTED AI PRODUCTION VERIFICATION ===");
+  console.log("=== STARTING ATEDD AI PRODUCTION VERIFICATION ===");
   const baseUrl = "http://127.0.0.1:3000";
 
   // 1. Landing Page Test
@@ -11,9 +11,9 @@ async function runTests() {
   const landingRes = await fetch(`${baseUrl}/`);
   if (!landingRes.ok) throw new Error(`Landing page failed with ${landingRes.status}`);
   const landingHtml = await landingRes.text();
-  if (!landingHtml.includes("ATTED AI")) throw new Error("Landing page missing ATTED AI brand");
+  if (!landingHtml.includes("ATEDD AI")) throw new Error("Landing page missing ATEDD AI brand");
   if (!landingHtml.includes("Welcome to")) throw new Error("Landing page missing Welcome to");
-  console.log("✓ Landing page loads perfectly with ATTED AI branding and responsive layout.");
+  console.log("✓ Landing page loads perfectly with ATEDD AI branding and responsive layout.");
 
   // 2. Signup Page Test
   console.log("\n[2] Testing Signup Page (/signup)...");

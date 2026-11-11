@@ -103,7 +103,7 @@ Verifies:
 ├── prisma/
 │   └── schema.prisma         # PostgreSQL schema (User model with UUID)
 ├── public/
-│   └── logo.png              # Official ATTED AI circular gold logo
+│   └── logo.png              # Official ATEDD AI circular gold logo
 ├── src/
 │   ├── app/
 │   │   ├── api/
@@ -126,7 +126,7 @@ Verifies:
 │   │   │   └── page.tsx      # Registration page
 │   │   ├── globals.css       # Design tokens & safe area support
 │   │   ├── layout.tsx        # Inter font & meta tags (viewport-fit=cover)
-│   │   └── page.tsx          # Landing hero page (Welcome to ATTED AI)
+│   │   └── page.tsx          # Landing hero page (Welcome to ATEDD AI)
 │   ├── components/
 │   │   ├── layout/
 │   │   │   ├── Header.tsx        # Top mobile nav & branding

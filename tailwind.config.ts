@@ -10,7 +10,7 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // ATTED AI Official Brand Identity Palette
+        // ATEDD AI Official Brand Identity Palette
         brand: {
           black: "#111111",      // Deep black
           charcoal: "#1B1B1B",   // Charcoal surface

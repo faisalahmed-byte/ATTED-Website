@@ -48,7 +48,7 @@ export default async function DashboardPage() {
               Welcome back, {firstName} 👋
             </h1>
             <p className="text-xs sm:text-sm text-[#777777] dark:text-[#A3A3A3] mt-1">
-              Here is your ATTED AI profile overview.
+              Here is your ATEDD AI profile overview.
             </p>
           </div>
 
@@ -153,7 +153,7 @@ export default async function DashboardPage() {
         {/* Reassurance Footer */}
         <div className="py-4 text-center text-xs text-[#777777] dark:text-[#A3A3A3] flex items-center justify-center gap-1.5">
           <CheckCircle2 className="w-3.5 h-3.5 text-[#D5AD55]" />
-          <span>Your data is secure &bull; ATTED AI</span>
+          <span>Your data is secure &bull; ATEDD AI</span>
         </div>
       </div>
     </MobileShell>

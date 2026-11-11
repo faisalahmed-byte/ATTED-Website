@@ -34,12 +34,12 @@ export function Header({
             <div className="w-8 h-8 rounded-full overflow-hidden bg-[#111111] flex items-center justify-center ring-1.5 ring-[#D5AD55]/60 group-hover:scale-105 transition-transform">
               <img
                 src="/logo.png"
-                alt="ATTED AI Logo"
+                alt="ATEDD AI Logo"
                 className="w-full h-full object-cover"
               />
             </div>
             <span className="font-extrabold text-base tracking-wider text-[#171717] dark:text-[#F7F7F5] uppercase">
-              ATTED AI
+              ATEDD AI
             </span>
           </Link>
         ) : null}

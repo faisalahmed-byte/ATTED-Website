@@ -32,12 +32,12 @@ export default function HomePage() {
 
         {/* Visually Balanced Hero Section */}
         <div className="flex-1 flex flex-col justify-center items-center text-center py-10 sm:py-16 my-auto animate-fadeIn w-full max-w-xl mx-auto">
-          {/* Prominent ATTED AI Logo */}
+          {/* Prominent ATEDD AI Logo */}
           <div className="relative mb-6 sm:mb-8">
             <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-full overflow-hidden bg-[#111111] p-1 ring-2 ring-[#D5AD55]/70 shadow-lg mx-auto select-none">
               <img
                 src="/logo.png"
-                alt="ATTED AI Logo"
+                alt="ATEDD AI Logo"
                 className="w-full h-full object-cover rounded-full"
               />
             </div>
@@ -47,7 +47,7 @@ export default function HomePage() {
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-[#171717] dark:text-[#F7F7F5] leading-tight mb-4">
             Welcome to{" "}
             <span className="text-[#D5AD55]">
-              ATTED AI
+              ATEDD AI
             </span>
           </h1>
 
@@ -79,7 +79,7 @@ export default function HomePage() {
 
         {/* Reassurance Footer */}
         <div className="pt-6 pb-3 border-t border-[#E8E8E6]/60 dark:border-[#2A2A2A]/60 flex flex-col sm:flex-row items-center justify-between text-xs text-[#777777] dark:text-[#A3A3A3] gap-2">
-          <span>&copy; 2026 ATTED AI. All rights reserved.</span>
+          <span>&copy; 2026 ATEDD AI. All rights reserved.</span>
           <span className="flex items-center gap-1.5 text-[#171717] dark:text-[#F7F7F5]">
             <CheckCircle2 className="w-3.5 h-3.5 text-[#D5AD55]" />
             Your data is secure

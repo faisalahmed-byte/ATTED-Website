@@ -87,12 +87,12 @@ export default function LoginPage() {
               <div className="w-12 h-12 rounded-full overflow-hidden bg-[#111111] p-0.5 ring-1.5 ring-[#D5AD55]/70 shadow-sm mb-3.5 select-none">
                 <img
                   src="/logo.png"
-                  alt="ATTED AI Logo"
+                  alt="ATEDD AI Logo"
                   className="w-full h-full object-cover rounded-full"
                 />
               </div>
               <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-[#171717] dark:text-[#F7F7F5]">
-                Sign In to ATTED AI
+                Sign In to ATEDD AI
               </h1>
               <p className="text-xs sm:text-sm text-[#777777] dark:text-[#A3A3A3] mt-1">
                 Enter your credentials to access your dashboard.
@@ -170,7 +170,7 @@ export default function LoginPage() {
         {/* Reassurance Footer */}
         <div className="py-4 text-center text-xs text-[#777777] dark:text-[#A3A3A3] flex items-center justify-center gap-1.5">
           <CheckCircle2 className="w-3.5 h-3.5 text-[#D5AD55]" />
-          <span>Your data is secure &bull; ATTED AI</span>
+          <span>Your data is secure &bull; ATEDD AI</span>
         </div>
       </div>
     </MobileShell>

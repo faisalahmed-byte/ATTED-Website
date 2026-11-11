@@ -3,12 +3,12 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 
 export const metadata: Metadata = {
-  title: "ATTED AI - Intelligent Workspace",
-  description: "A premium, modern web application for ATTED AI, powered by PostgreSQL.",
+  title: "ATEDD AI - Intelligent Workspace",
+  description: "A premium, modern web application for ATEDD AI, powered by PostgreSQL.",
   appleWebApp: {
     capable: true,
     statusBarStyle: "black-translucent",
-    title: "ATTED AI",
+    title: "ATEDD AI",
   },
   icons: {
     icon: "/logo.png",
