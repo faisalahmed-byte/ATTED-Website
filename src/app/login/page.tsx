@@ -70,10 +70,11 @@ export default function LoginPage() {
 
   return (
     <MobileShell>
-      <div className="flex flex-col min-h-full justify-between pb-6">
+      <div className="flex flex-col min-h-full justify-between flex-1">
         <Header backHref="/" />
 
-        <div className="flex-1 flex flex-col justify-center py-2 animate-fadeIn">
+        {/* Responsive Auth Container - Centered card on laptop/desktop, flat & fluid on phone */}
+        <div className="w-full max-w-md mx-auto my-auto py-4 sm:py-8 md:p-8 md:bg-white md:dark:bg-surfaceCard-dark md:rounded-3xl md:border md:border-border-light md:dark:border-border-dark md:shadow-xl transition-all duration-200 animate-fadeIn">
           {/* Welcome Text */}
           <div className="mb-6 text-left">
             <div className="w-12 h-12 rounded-full overflow-hidden bg-black p-0.5 shadow-md ring-2 ring-amber-400/50 shadow-amber-500/10 mb-3 select-none">
@@ -104,7 +105,7 @@ export default function LoginPage() {
             <Input
               label="Email Address"
               type="email"
-              placeholder="faisal@example.com"
+              placeholder="name@example.com"
               value={email}
               onChange={(e) => {
                 setEmail(e.target.value);
@@ -143,22 +144,22 @@ export default function LoginPage() {
               </Button>
             </div>
           </form>
-        </div>
 
-        {/* Footer Link */}
-        <div className="pt-4 text-center">
-          <p className="text-sm text-slate-500 dark:text-slate-300">
-            Don&apos;t have an account?{" "}
-            <Link
-              href="/signup"
-              className="font-semibold text-primary dark:text-indigo-300 hover:text-indigo-600 dark:hover:text-indigo-200 hover:underline inline-flex items-center"
-            >
-              Sign Up
-            </Link>
-          </p>
-          <p className="text-[11px] text-slate-400 dark:text-slate-400 pt-3">
-            Your data is secure &bull; Atedd AI v1.0
-          </p>
+          {/* Switch to Signup */}
+          <div className="pt-6 text-center border-t border-border-light dark:border-border-dark mt-6">
+            <p className="text-sm text-slate-500 dark:text-slate-300">
+              Don&apos;t have an account?{" "}
+              <Link
+                href="/signup"
+                className="font-semibold text-primary dark:text-indigo-300 hover:text-indigo-600 dark:hover:text-indigo-200 hover:underline inline-flex items-center"
+              >
+                Sign Up
+              </Link>
+            </p>
+            <p className="text-[11px] text-slate-400 dark:text-slate-400 pt-3">
+              Your data is secure &bull; Atedd AI v1.0
+            </p>
+          </div>
         </div>
       </div>
     </MobileShell>

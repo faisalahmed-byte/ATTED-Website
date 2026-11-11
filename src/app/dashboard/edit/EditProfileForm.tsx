@@ -293,19 +293,20 @@ export function EditProfileForm({ initialUser }: { initialUser: InitialUserData 
       </div>
 
       {/* Action Buttons */}
-      <div className="pt-4 space-y-2.5">
+      <div className="pt-4 flex flex-col sm:flex-row gap-2.5">
         <Button
           type="submit"
           variant="primary"
           size="lg"
           isLoading={isSaving}
+          className="flex-1"
           rightIcon={<Check className="w-5 h-5 ml-1" />}
         >
           Save Changes
         </Button>
 
-        <Link href="/dashboard" className="block w-full">
-          <Button variant="ghost" size="md">
+        <Link href="/dashboard" className="flex-1">
+          <Button variant="ghost" size="lg" className="w-full">
             Cancel
           </Button>
         </Link>
