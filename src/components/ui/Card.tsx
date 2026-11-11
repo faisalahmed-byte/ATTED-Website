@@ -2,7 +2,7 @@ import React, { HTMLAttributes } from "react";
 import { cn } from "@/lib/utils";
 
 export interface CardProps extends HTMLAttributes<HTMLDivElement> {
-  variant?: "default" | "elevated" | "glass" | "gradient";
+  variant?: "default" | "elevated" | "flat";
 }
 
 export function Card({
@@ -13,19 +13,17 @@ export function Card({
 }: CardProps) {
   const variantStyles = {
     default:
-      "bg-white dark:bg-surfaceCard-dark border border-border-light dark:border-border-dark shadow-card dark:shadow-card-dark",
+      "bg-white dark:bg-[#1B1B1B] border border-[#E8E8E6] dark:border-[#2A2A2A] shadow-card dark:shadow-card-dark",
     elevated:
-      "bg-white dark:bg-surfaceCard-dark border border-border-light/80 dark:border-border-dark shadow-xl dark:shadow-2xl",
-    glass:
-      "bg-white/80 dark:bg-surfaceCard-dark/80 backdrop-blur-md border border-white/20 dark:border-white/10 shadow-card",
-    gradient:
-      "bg-brand-subtle dark:bg-indigo-950/20 border border-primary/20 dark:border-indigo-500/20 shadow-card",
+      "bg-white dark:bg-[#1B1B1B] border border-[#E8E8E6] dark:border-[#2A2A2A] shadow-card dark:shadow-card-dark",
+    flat:
+      "bg-white dark:bg-[#1B1B1B] border border-[#E8E8E6] dark:border-[#2A2A2A]",
   };
 
   return (
     <div
       className={cn(
-        "rounded-2xl p-6 transition-all duration-200",
+        "rounded-2xl p-5 sm:p-6 transition-colors duration-150",
         variantStyles[variant],
         className
       )}
@@ -35,4 +33,3 @@ export function Card({
     </div>
   );
 }
-

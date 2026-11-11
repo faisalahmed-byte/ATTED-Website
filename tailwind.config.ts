@@ -10,67 +10,80 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        // ATTED AI Official Brand Identity Palette
+        brand: {
+          black: "#111111",      // Deep black
+          charcoal: "#1B1B1B",   // Charcoal surface
+          charcoalHover: "#262626",
+          gold: "#D5AD55",       // Primary gold
+          goldLight: "#E8CB83",  // Light gold
+          goldDark: "#B8933C",   // Active gold
+          offwhite: "#F7F7F5",   // Off-white background
+          white: "#FFFFFF",
+          textLight: "#171717",  // Main text in light mode
+          secondaryText: "#777777", // Secondary text
+        },
         background: {
-          light: "#F7F8FC",
-          dark: "#0B0F19",
+          light: "#F7F7F5",
+          dark: "#111111",
         },
         surface: {
           light: "#FFFFFF",
-          dark: "#161F30",
+          dark: "#1B1B1B",
         },
         surfaceCard: {
           light: "#FFFFFF",
-          dark: "#1E293B",
+          dark: "#1B1B1B",
         },
         primary: {
-          DEFAULT: "#4F46E5", // Indigo 600
-          hover: "#4338CA",
-          light: "#EEF2FF",
+          DEFAULT: "#D5AD55", // Primary gold
+          hover: "#E8CB83",
+          active: "#B8933C",
+          text: "#111111",
         },
         secondary: {
-          DEFAULT: "#7C3AED", // Violet 600
-          hover: "#6D28D9",
-          light: "#F5F3FF",
+          DEFAULT: "#1B1B1B",
+          hover: "#262626",
+          light: "#F0F0EE",
         },
         text: {
-          light: "#0F172A", // Slate 900
-          dark: "#F8FAFC",  // Slate 50
+          light: "#171717",
+          dark: "#F7F7F5",
         },
         muted: {
-          light: "#64748B", // Slate 500
-          dark: "#94A3B8",  // Slate 400
+          light: "#777777",
+          dark: "#A3A3A3",
         },
         border: {
-          light: "#E2E8F0", // Slate 200
-          dark: "#334155",  // Slate 700
+          light: "#E8E8E6",
+          dark: "#2A2A2A",
         },
       },
       fontFamily: {
-        sans: ["var(--font-inter)", "system-ui", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "sans-serif"],
+        sans: [
+          "var(--font-inter)",
+          "system-ui",
+          "-apple-system",
+          "BlinkMacSystemFont",
+          "Segoe UI",
+          "Roboto",
+          "sans-serif",
+        ],
       },
       borderRadius: {
-        "xl": "16px",
-        "2xl": "20px",
+        xl: "14px",
+        "2xl": "18px",
         "3xl": "24px",
       },
       boxShadow: {
-        "card": "0 2px 8px -2px rgba(15, 23, 42, 0.05), 0 10px 24px -4px rgba(15, 23, 42, 0.08)",
+        subtle: "0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px -1px rgba(0, 0, 0, 0.05)",
+        card: "0 2px 8px -2px rgba(0, 0, 0, 0.04), 0 8px 24px -4px rgba(0, 0, 0, 0.06)",
         "card-dark": "0 2px 10px -2px rgba(0, 0, 0, 0.5), 0 10px 25px -5px rgba(0, 0, 0, 0.4)",
-        "brand-glow": "0 10px 25px -5px rgba(79, 70, 229, 0.35)",
-        "brand-glow-lg": "0 14px 35px -5px rgba(124, 58, 237, 0.45)",
-      },
-      backgroundImage: {
-        "brand-gradient": "linear-gradient(135deg, #4F46E5 0%, #7C3AED 100%)",
-        "brand-gradient-hover": "linear-gradient(135deg, #4338CA 0%, #6D28D9 100%)",
-        "brand-subtle": "linear-gradient(135deg, rgba(79, 70, 229, 0.08) 0%, rgba(124, 58, 237, 0.08) 100%)",
+        gold: "0 4px 14px 0 rgba(213, 173, 85, 0.25)",
       },
       spacing: {
-        "18": "4.5rem",
         "safe-top": "env(safe-area-inset-top, 0px)",
         "safe-bottom": "env(safe-area-inset-bottom, 0px)",
-      },
-      maxWidth: {
-        "mobile": "440px",
       },
     },
   },
@@ -78,4 +91,3 @@ const config: Config = {
 };
 
 export default config;
-

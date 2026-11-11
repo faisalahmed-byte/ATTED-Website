@@ -3,6 +3,7 @@ import { redirect } from "next/navigation";
 import { getCurrentUser } from "@/lib/auth";
 import { MobileShell } from "@/components/layout/MobileShell";
 import { Header } from "@/components/layout/Header";
+import { Card } from "@/components/ui/Card";
 import { EditProfileForm } from "./EditProfileForm";
 
 export const dynamic = "force-dynamic";
@@ -15,11 +16,11 @@ export default async function EditProfilePage() {
   }
 
   return (
-    <MobileShell>
-      <div className="flex flex-col min-h-full pb-6 w-full max-w-2xl mx-auto">
+    <MobileShell containerClassName="max-w-2xl">
+      <div className="flex flex-col min-h-[90vh] justify-between flex-1 max-w-2xl w-full mx-auto">
         <Header backHref="/dashboard" title="Edit Profile" />
 
-        <div className="flex-1 py-2 md:p-8 md:bg-white md:dark:bg-surfaceCard-dark md:rounded-3xl md:border md:border-border-light md:dark:border-border-dark md:shadow-xl transition-all duration-200">
+        <Card className="my-auto py-5 sm:py-7 px-5 sm:px-7 border-[#E8E8E6] dark:border-[#2A2A2A] animate-fadeIn">
           <EditProfileForm
             initialUser={{
               name: user.name,
@@ -29,7 +30,12 @@ export default async function EditProfilePage() {
               bio: user.bio || "",
             }}
           />
-        </div>
+        </Card>
+
+        {/* Reassurance Footer */}
+        <p className="text-center text-xs text-[#777777] dark:text-[#A3A3A3] py-4">
+          ATTED AI &bull; Encrypted Session
+        </p>
       </div>
     </MobileShell>
   );

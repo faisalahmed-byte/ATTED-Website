@@ -20,17 +20,17 @@ export function Avatar({
   const initials = getInitials(name);
 
   const sizeClasses = {
-    sm: "w-10 h-10 text-sm font-semibold",
-    md: "w-14 h-14 text-xl font-bold",
-    lg: "w-20 h-20 text-2xl font-bold",
-    xl: "w-24 h-24 text-3xl font-extrabold",
+    sm: "w-9 h-9 text-xs font-semibold",
+    md: "w-12 h-12 text-sm font-bold",
+    lg: "w-16 h-16 text-lg font-bold",
+    xl: "w-20 h-20 text-xl font-bold",
   };
 
   return (
     <div className="relative inline-flex items-center justify-center shrink-0">
       <div
         className={cn(
-          "rounded-full bg-brand-gradient text-white flex items-center justify-center shadow-brand-glow select-none ring-2 ring-amber-400/50 shadow-amber-500/10 dark:ring-amber-400/60 overflow-hidden",
+          "rounded-full bg-[#111111] text-[#D5AD55] flex items-center justify-center select-none ring-2 ring-[#D5AD55]/60 overflow-hidden",
           sizeClasses[size],
           className
         )}
@@ -47,8 +47,8 @@ export function Avatar({
       </div>
       {showBadge && (
         <span
-          className="absolute bottom-0 right-0 w-3.5 h-3.5 bg-emerald-500 border-2 border-white dark:border-surfaceCard-dark rounded-full shadow-sm"
-          title="Online"
+          className="absolute bottom-0 right-0 w-3 h-3 bg-emerald-500 border-2 border-white dark:border-[#111111] rounded-full shadow-xs"
+          title="Active"
         />
       )}
     </div>

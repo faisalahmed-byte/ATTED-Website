@@ -19,33 +19,33 @@ export function Header({
   rightAction,
 }: HeaderProps) {
   return (
-    <header className="flex items-center justify-between py-3 mb-4 shrink-0 select-none">
+    <header className="w-full flex items-center justify-between py-3 mb-4 sm:mb-6 shrink-0 select-none border-b border-[#E8E8E6]/60 dark:border-[#2A2A2A]/60">
       <div className="flex items-center gap-3">
         {backHref ? (
           <Link
             href={backHref}
-            className="w-10 h-10 rounded-full border border-border-light dark:border-border-dark bg-white dark:bg-surfaceCard-dark flex items-center justify-center text-text-light dark:text-text-dark hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors shadow-sm"
+            className="w-9 h-9 rounded-xl border border-[#E8E8E6] dark:border-[#2A2A2A] bg-white dark:bg-[#1B1B1B] flex items-center justify-center text-[#171717] dark:text-[#F7F7F5] hover:border-[#D5AD55]/50 transition-colors"
             aria-label="Go back"
           >
-            <ArrowLeft className="w-5 h-5" />
+            <ArrowLeft className="w-4 h-4" />
           </Link>
         ) : showBrand ? (
           <Link href="/" className="flex items-center gap-2.5 group">
-            <div className="w-9 h-9 rounded-full overflow-hidden bg-black flex items-center justify-center shadow-md ring-1.5 ring-amber-400/50 shadow-amber-500/10 group-hover:scale-105 transition-transform">
+            <div className="w-8 h-8 rounded-full overflow-hidden bg-[#111111] flex items-center justify-center ring-1.5 ring-[#D5AD55]/60 group-hover:scale-105 transition-transform">
               <img
                 src="/logo.png"
-                alt="Atedd AI Logo"
+                alt="ATTED AI Logo"
                 className="w-full h-full object-cover"
               />
             </div>
-            <span className="font-extrabold text-lg tracking-tight text-text-light dark:text-text-dark">
-              Atedd AI
+            <span className="font-extrabold text-base tracking-wider text-[#171717] dark:text-[#F7F7F5] uppercase">
+              ATTED AI
             </span>
           </Link>
         ) : null}
 
         {title && (
-          <h1 className="text-xl font-bold tracking-tight text-text-light dark:text-text-dark">
+          <h1 className="text-lg font-bold tracking-tight text-[#171717] dark:text-[#F7F7F5]">
             {title}
           </h1>
         )}

@@ -7,7 +7,11 @@ import {
   FileText,
   Edit3,
   Calendar,
+  Database,
   ShieldCheck,
+  CheckCircle2,
+  Server,
+  UserCheck,
 } from "lucide-react";
 import { getCurrentUser } from "@/lib/auth";
 import { getFirstName, formatName } from "@/lib/utils";
@@ -36,140 +40,191 @@ export default async function DashboardPage() {
   });
 
   return (
-    <MobileShell>
-      <div className="flex flex-col min-h-full pb-6 w-full max-w-4xl mx-auto">
+    <MobileShell containerClassName="max-w-5xl">
+      <div className="flex flex-col min-h-[90vh] justify-between flex-1 w-full mx-auto">
         {/* Top Header */}
-        <Header showBrand />
+        <Header
+          showBrand
+          rightAction={
+            <div className="hidden sm:flex items-center gap-2 mr-2">
+              <Link href="/dashboard/edit">
+                <Button variant="secondary" size="sm" leftIcon={<Edit3 className="w-3.5 h-3.5 mr-1" />}>
+                  Edit Profile
+                </Button>
+              </Link>
+            </div>
+          }
+        />
 
-        {/* Personalized Greeting */}
-        <div className="mb-6 animate-fadeIn">
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+        {/* Personalized Welcome Header */}
+        <div className="my-auto py-4 sm:py-6 w-full animate-fadeIn">
+          <div className="mb-6 text-left flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
             <div>
-              <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-text-light dark:text-text-dark">
+              <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-[#171717] dark:text-[#F7F7F5]">
                 Welcome back, {firstName} 👋
               </h1>
-              <p className="text-sm text-slate-500 dark:text-slate-300 mt-1">
-                Here is your Atedd AI profile overview.
+              <p className="text-xs sm:text-sm text-[#777777] dark:text-[#A3A3A3] mt-1">
+                Here is your ATTED AI profile and intelligent workspace overview.
               </p>
             </div>
-            <div className="hidden sm:flex items-center gap-2">
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 text-xs font-semibold">
-                <ShieldCheck className="w-3.5 h-3.5" />
-                Verified Account
-              </span>
+            <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#D5AD55]/15 border border-[#D5AD55]/30 text-xs font-semibold text-[#D5AD55] select-none self-start sm:self-center">
+              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+              <span>PostgreSQL Connected</span>
             </div>
           </div>
-        </div>
 
-        {/* Responsive Profile Card - Single-column on phone, two-column on laptop */}
-        <Card variant="elevated" className="mb-6 p-5 sm:p-8 animate-fadeIn">
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 items-start">
-            {/* Identity Column: Centered on mobile, clean left sidebar on laptop */}
-            <div className="md:col-span-4 flex flex-col items-center text-center pb-6 md:pb-0 border-b md:border-b-0 md:border-r border-border-light dark:border-border-dark md:pr-6 relative">
-              <Avatar name={user.name} src={user.avatarUrl} size="xl" showBadge className="mb-4" />
-              <h2 className="text-xl sm:text-2xl font-bold text-text-light dark:text-text-dark">
-                {displayName}
-              </h2>
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 mt-2 rounded-full bg-slate-100 dark:bg-slate-800 text-xs text-slate-600 dark:text-slate-300 font-medium">
-                <Mail className="w-3.5 h-3.5 shrink-0" />
-                <span className="truncate max-w-[200px]">{user.email}</span>
+          {/* Responsive Layout: Split on Laptop (lg:), single column on phone */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+            {/* Left / Main Profile Card (lg:col-span-7) */}
+            <Card className="lg:col-span-7 p-6 sm:p-8 border-[#E8E8E6] dark:border-[#2A2A2A] shadow-sm">
+              {/* Main Identity Banner */}
+              <div className="flex flex-col items-center text-center pb-6 border-b border-[#E8E8E6] dark:border-[#2A2A2A] relative">
+                <Avatar name={user.name} src={user.avatarUrl} size="xl" showBadge className="mb-3 ring-2 ring-[#D5AD55]/70" />
+                <h2 className="text-xl sm:text-2xl font-bold text-[#171717] dark:text-[#F7F7F5]">
+                  {displayName}
+                </h2>
+                <div className="inline-flex items-center gap-1.5 px-3 py-1 mt-2 rounded-full bg-black/5 dark:bg-white/5 text-xs text-[#777777] dark:text-[#A3A3A3] font-medium">
+                  <Mail className="w-3.5 h-3.5 shrink-0" />
+                  <span className="truncate max-w-[240px]">{user.email}</span>
+                </div>
+
+                {/* Subtle gold accent divider */}
+                <div className="w-12 h-0.5 bg-[#D5AD55]/50 mx-auto mt-4" />
               </div>
 
-              {/* Subtle gold accent divider */}
-              <div className="w-12 h-0.5 bg-gradient-to-r from-transparent via-amber-400/50 to-transparent mx-auto mt-4" />
+              {/* Profile Fields List */}
+              <div className="pt-5 space-y-4 text-sm">
+                {/* Phone */}
+                <div className="flex items-start gap-3">
+                  <div className="w-9 h-9 rounded-xl bg-black/5 dark:bg-white/5 flex items-center justify-center text-[#D5AD55] shrink-0 mt-0.5">
+                    <Phone className="w-4 h-4" />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-xs font-semibold text-[#777777] dark:text-[#A3A3A3] uppercase tracking-wider">
+                      Phone Number
+                    </p>
+                    <p className="text-[#171717] dark:text-[#F7F7F5] font-medium mt-0.5 text-xs sm:text-sm break-all">
+                      {user.phone || (
+                        <span className="text-[#777777] dark:text-[#777777] italic text-xs font-normal">
+                          No phone number added
+                        </span>
+                      )}
+                    </p>
+                  </div>
+                </div>
 
-              {/* Laptop Quick Actions */}
-              <div className="hidden md:flex flex-col w-full gap-2.5 mt-6">
-                <Link href="/dashboard/edit" className="w-full">
+                {/* Bio */}
+                <div className="flex items-start gap-3">
+                  <div className="w-9 h-9 rounded-xl bg-black/5 dark:bg-white/5 flex items-center justify-center text-[#D5AD55] shrink-0 mt-0.5">
+                    <FileText className="w-4 h-4" />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-xs font-semibold text-[#777777] dark:text-[#A3A3A3] uppercase tracking-wider">
+                      Bio / Notes
+                    </p>
+                    <p className="text-[#171717] dark:text-[#F7F7F5] font-medium mt-0.5 text-xs sm:text-sm leading-relaxed">
+                      {user.bio || (
+                        <span className="text-[#777777] dark:text-[#777777] italic text-xs font-normal">
+                          No bio provided yet. Tap &apos;Edit Profile&apos; to write something.
+                        </span>
+                      )}
+                    </p>
+                  </div>
+                </div>
+
+                {/* Member Since */}
+                <div className="flex items-start gap-3">
+                  <div className="w-9 h-9 rounded-xl bg-black/5 dark:bg-white/5 flex items-center justify-center text-[#777777] dark:text-[#A3A3A3] shrink-0 mt-0.5">
+                    <Calendar className="w-4 h-4" />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-xs font-semibold text-[#777777] dark:text-[#A3A3A3] uppercase tracking-wider">
+                      Member Since
+                    </p>
+                    <p className="text-[#171717] dark:text-[#F7F7F5] font-medium mt-0.5 text-xs sm:text-sm">
+                      {formattedDate}
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Edit Profile Button on Mobile / Inside Card */}
+              <div className="pt-6 mt-6 border-t border-[#E8E8E6] dark:border-[#2A2A2A] flex flex-col sm:flex-row gap-3">
+                <Link href="/dashboard/edit" className="flex-1">
                   <Button
                     variant="primary"
                     size="md"
                     className="w-full"
-                    leftIcon={<Edit3 className="w-4 h-4 mr-1" />}
+                    leftIcon={<Edit3 className="w-4 h-4 mr-1.5" />}
                   >
                     Edit Profile
                   </Button>
                 </Link>
+                <div className="sm:hidden w-full">
+                  <LogoutButton />
+                </div>
+              </div>
+            </Card>
+
+            {/* Right / Secondary Workspace Card (lg:col-span-5) */}
+            <div className="lg:col-span-5 space-y-4">
+              <Card className="p-6 border-[#E8E8E6] dark:border-[#2A2A2A] shadow-sm">
+                <h3 className="text-sm font-bold text-[#171717] dark:text-[#F7F7F5] uppercase tracking-wider mb-4 flex items-center gap-2">
+                  <Database className="w-4 h-4 text-[#D5AD55]" />
+                  <span>Workspace Infrastructure</span>
+                </h3>
+
+                <div className="space-y-3.5 text-xs">
+                  <div className="flex items-center justify-between py-2 border-b border-[#E8E8E6] dark:border-[#2A2A2A]">
+                    <span className="text-[#777777] dark:text-[#A3A3A3] flex items-center gap-2">
+                      <Server className="w-3.5 h-3.5 text-[#D5AD55]" /> Database
+                    </span>
+                    <span className="font-semibold text-[#171717] dark:text-[#F7F7F5]">
+                      PostgreSQL (AWS Neon)
+                    </span>
+                  </div>
+
+                  <div className="flex items-center justify-between py-2 border-b border-[#E8E8E6] dark:border-[#2A2A2A]">
+                    <span className="text-[#777777] dark:text-[#A3A3A3] flex items-center gap-2">
+                      <ShieldCheck className="w-3.5 h-3.5 text-[#D5AD55]" /> Security
+                    </span>
+                    <span className="font-semibold text-[#171717] dark:text-[#F7F7F5]">
+                      bcrypt Hashed
+                    </span>
+                  </div>
+
+                  <div className="flex items-center justify-between py-2 border-b border-[#E8E8E6] dark:border-[#2A2A2A]">
+                    <span className="text-[#777777] dark:text-[#A3A3A3] flex items-center gap-2">
+                      <UserCheck className="w-3.5 h-3.5 text-[#D5AD55]" /> Session
+                    </span>
+                    <span className="font-semibold text-[#171717] dark:text-[#F7F7F5]">
+                      HTTP-Only JWT Cookie
+                    </span>
+                  </div>
+
+                  <div className="flex items-center justify-between py-2">
+                    <span className="text-[#777777] dark:text-[#A3A3A3] flex items-center gap-2">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-[#D5AD55]" /> Status
+                    </span>
+                    <span className="font-semibold text-emerald-600 dark:text-emerald-400">
+                      Active & Synchronized
+                    </span>
+                  </div>
+                </div>
+              </Card>
+
+              {/* Laptop Quick Action Card */}
+              <div className="hidden sm:block">
                 <LogoutButton />
               </div>
             </div>
-
-            {/* Profile Details Column */}
-            <div className="md:col-span-8 space-y-4">
-              <h3 className="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
-                Profile Details
-              </h3>
-
-              {/* Phone */}
-              <div className="p-4 rounded-2xl bg-slate-50/80 dark:bg-slate-900/40 border border-border-light dark:border-border-dark flex items-start gap-3.5">
-                <div className="w-9 h-9 rounded-xl bg-primary/10 dark:bg-primary/20 flex items-center justify-center text-primary dark:text-indigo-300 shrink-0 mt-0.5">
-                  <Phone className="w-4 h-4" />
-                </div>
-                <div className="flex-1 min-w-0">
-                  <p className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
-                    Phone Number
-                  </p>
-                  <p className="text-text-light dark:text-text-dark font-medium mt-1 text-sm break-all">
-                    {user.phone || (
-                      <span className="text-slate-500 dark:text-slate-400 italic text-xs font-normal">
-                        No phone number added
-                      </span>
-                    )}
-                  </p>
-                </div>
-              </div>
-
-              {/* Bio */}
-              <div className="p-4 rounded-2xl bg-slate-50/80 dark:bg-slate-900/40 border border-border-light dark:border-border-dark flex items-start gap-3.5">
-                <div className="w-9 h-9 rounded-xl bg-secondary/10 dark:bg-secondary/20 flex items-center justify-center text-secondary dark:text-violet-300 shrink-0 mt-0.5">
-                  <FileText className="w-4 h-4" />
-                </div>
-                <div className="flex-1 min-w-0">
-                  <p className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
-                    Bio / Notes
-                  </p>
-                  <p className="text-text-light dark:text-text-dark font-medium mt-1 text-sm leading-relaxed">
-                    {user.bio || (
-                      <span className="text-slate-500 dark:text-slate-400 italic text-xs font-normal">
-                        No bio provided yet. Tap &apos;Edit Profile&apos; to write something.
-                      </span>
-                    )}
-                  </p>
-                </div>
-              </div>
-
-              {/* Member Since */}
-              <div className="p-4 rounded-2xl bg-slate-50/80 dark:bg-slate-900/40 border border-border-light dark:border-border-dark flex items-start gap-3.5">
-                <div className="w-9 h-9 rounded-xl bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-500 dark:text-slate-300 shrink-0 mt-0.5">
-                  <Calendar className="w-4 h-4" />
-                </div>
-                <div className="flex-1 min-w-0">
-                  <p className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
-                    Member Since
-                  </p>
-                  <p className="text-text-light dark:text-text-dark font-medium mt-1 text-sm">
-                    {formattedDate}
-                  </p>
-                </div>
-              </div>
-            </div>
           </div>
-        </Card>
-
-        {/* Mobile-only Action Buttons at bottom */}
-        <div className="md:hidden space-y-3 mt-auto pt-2">
-          <Link href="/dashboard/edit" className="block w-full">
-            <Button
-              variant="primary"
-              size="md"
-              leftIcon={<Edit3 className="w-4 h-4 mr-1" />}
-            >
-              Edit Profile
-            </Button>
-          </Link>
-
-          <LogoutButton />
         </div>
+
+        {/* Reassurance Footer */}
+        <p className="text-center text-xs text-[#777777] dark:text-[#A3A3A3] py-4">
+          ATTED AI &bull; Encrypted Session &bull; Your data is secure
+        </p>
       </div>
     </MobileShell>
   );

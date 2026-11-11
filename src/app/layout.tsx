@@ -3,12 +3,12 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 
 export const metadata: Metadata = {
-  title: "Atedd AI - Intelligent Web Experience",
-  description: "A modern, mobile-first intelligence platform crafted for seamless usability.",
+  title: "ATTED AI - Intelligent Workspace",
+  description: "A premium, modern web application for ATTED AI, powered by PostgreSQL.",
   appleWebApp: {
     capable: true,
     statusBarStyle: "black-translucent",
-    title: "Atedd AI",
+    title: "ATTED AI",
   },
   icons: {
     icon: "/logo.png",
@@ -18,11 +18,11 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  maximumScale: 1,
+  maximumScale: 5,
   viewportFit: "cover",
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#F7F8FC" },
-    { media: "(prefers-color-scheme: dark)", color: "#0B0F19" },
+    { media: "(prefers-color-scheme: light)", color: "#F7F7F5" },
+    { media: "(prefers-color-scheme: dark)", color: "#111111" },
   ],
 };
 
@@ -41,7 +41,7 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body className="antialiased min-h-screen">
+      <body className="antialiased min-h-screen bg-[#F7F7F5] dark:bg-[#111111] text-[#171717] dark:text-[#F7F7F5] transition-colors duration-150">
         <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>

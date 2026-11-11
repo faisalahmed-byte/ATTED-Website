@@ -11,6 +11,13 @@ export const signupSchema = z.object({
     .trim()
     .email({ message: "Please provide a valid email address." })
     .toLowerCase(),
+  phone: z
+    .string()
+    .trim()
+    .max(25, { message: "Phone number is too long." })
+    .optional()
+    .nullable()
+    .or(z.literal("")),
   password: z
     .string()
     .min(8, { message: "Password must be at least 8 characters long." })

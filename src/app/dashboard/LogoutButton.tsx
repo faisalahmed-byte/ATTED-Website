@@ -29,11 +29,10 @@ export function LogoutButton() {
       size="md"
       onClick={handleLogout}
       isLoading={isLoggingOut}
-      leftIcon={<LogOut className="w-4 h-4 mr-1 text-rose-500" />}
-      className="border-slate-200 dark:border-slate-800 hover:border-rose-200 dark:hover:border-rose-900 hover:bg-rose-50/40 dark:hover:bg-rose-950/20"
+      leftIcon={<LogOut className="w-4 h-4 mr-1 text-[#777777] dark:text-[#A3A3A3]" />}
+      className="border-[#E8E8E6] dark:border-[#2A2A2A] hover:border-rose-300 dark:hover:border-rose-900/60 hover:text-rose-600 dark:hover:text-rose-400"
     >
       Log Out
     </Button>
   );
 }
-

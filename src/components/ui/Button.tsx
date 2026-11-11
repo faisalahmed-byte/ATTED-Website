@@ -31,25 +31,25 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     ref
   ) => {
     const baseStyles =
-      "relative inline-flex items-center justify-center font-semibold rounded-2xl select-none transition-all duration-200 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 disabled:opacity-60 disabled:pointer-events-none disabled:active:scale-100";
+      "relative inline-flex items-center justify-center font-medium rounded-xl select-none transition-colors duration-150 active:scale-[0.99] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D5AD55] focus-visible:ring-offset-2 dark:focus-visible:ring-offset-[#111111] disabled:opacity-50 disabled:pointer-events-none disabled:active:scale-100";
 
     const variantStyles = {
       primary:
-        "bg-brand-gradient text-white shadow-brand-glow hover:shadow-brand-glow-lg hover:brightness-105 active:brightness-95",
+        "bg-[#D5AD55] hover:bg-[#E8CB83] active:bg-[#B8933C] text-[#111111] font-semibold shadow-gold",
       secondary:
-        "bg-white dark:bg-surfaceCard-dark text-text-light dark:text-text-dark border border-border-light dark:border-border-dark shadow-sm hover:bg-slate-50 dark:hover:bg-slate-800",
+        "bg-white dark:bg-[#1B1B1B] text-[#171717] dark:text-[#F7F7F5] border border-[#E8E8E6] dark:border-[#2A2A2A] hover:bg-black/[0.03] dark:hover:bg-white/[0.04] active:bg-black/[0.06] dark:active:bg-white/[0.08] shadow-subtle",
       outline:
-        "bg-transparent text-primary dark:text-indigo-400 border-2 border-primary/40 dark:border-indigo-500/40 hover:bg-primary/5 active:bg-primary/10",
+        "bg-transparent text-[#D5AD55] border border-[#D5AD55] hover:bg-[#D5AD55]/10 active:bg-[#D5AD55]/15",
       ghost:
-        "bg-transparent text-muted-light dark:text-muted-dark hover:text-text-light dark:hover:text-text-dark hover:bg-slate-100 dark:hover:bg-slate-800",
+        "bg-transparent text-[#777777] dark:text-[#A3A3A3] hover:text-[#171717] dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/5",
       danger:
-        "bg-rose-500 text-white hover:bg-rose-600 shadow-sm shadow-rose-500/30",
+        "bg-rose-600 hover:bg-rose-700 text-white shadow-subtle",
     };
 
     const sizeStyles = {
-      sm: "h-10 px-4 text-sm gap-2",
-      md: "min-h-[48px] px-5 text-base gap-2.5", // Min 48px tap target
-      lg: "min-h-[54px] px-6 text-lg gap-3",
+      sm: "h-9 px-3.5 text-xs gap-1.5",
+      md: "min-h-[48px] px-5 text-sm gap-2", // Min 48px touch target
+      lg: "min-h-[52px] px-6 text-base gap-2.5",
     };
 
     return (
@@ -68,14 +68,14 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       >
         {isLoading ? (
           <>
-            <Loader2 className="w-5 h-5 animate-spin" />
-            <span>Loading...</span>
+            <Loader2 className="w-4 h-4 animate-spin shrink-0" />
+            <span>Please wait...</span>
           </>
         ) : (
           <>
-            {leftIcon && <span className="inline-flex shrink-0">{leftIcon}</span>}
+            {leftIcon && <span className="shrink-0">{leftIcon}</span>}
             <span>{children}</span>
-            {rightIcon && <span className="inline-flex shrink-0">{rightIcon}</span>}
+            {rightIcon && <span className="shrink-0">{rightIcon}</span>}
           </>
         )}
       </button>
@@ -84,4 +84,3 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 );
 
 Button.displayName = "Button";
-

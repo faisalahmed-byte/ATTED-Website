@@ -13,7 +13,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: firstError }, { status: 400 });
     }
 
-    const { name, email, password } = result.data;
+    const { name, email, phone, password } = result.data;
 
     // Check if user already exists
     const existingUser = await findUserByEmail(email);
@@ -27,10 +27,11 @@ export async function POST(req: NextRequest) {
     // Hash password with bcrypt
     const passwordHash = await hashPassword(password);
 
-    // Create user in database
+    // Create user in database (including phone if provided)
     const newUser = await createUser({
       name,
       email,
+      phone: phone?.trim() || null,
       passwordHash,
     });
 

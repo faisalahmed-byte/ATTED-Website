@@ -12,7 +12,6 @@ import {
   Lock,
   Camera,
   Trash2,
-  Sparkles,
 } from "lucide-react";
 import { Input } from "@/components/ui/Input";
 import { Button } from "@/components/ui/Button";
@@ -26,7 +25,6 @@ interface InitialUserData {
   bio: string;
 }
 
-// Preset avatars users can choose with 1-tap
 const PRESET_AVATARS = [
   "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80",
   "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80",
@@ -47,7 +45,6 @@ export function EditProfileForm({ initialUser }: { initialUser: InitialUserData 
   const [globalError, setGlobalError] = useState<string | null>(null);
   const [isSaving, setIsSaving] = useState(false);
 
-  // Handle uploading image from user device/camera
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
@@ -114,7 +111,6 @@ export function EditProfileForm({ initialUser }: { initialUser: InitialUserData 
         return;
       }
 
-      // Success -> Return to dashboard and refresh data
       router.push("/dashboard");
       router.refresh();
     } catch {
@@ -124,20 +120,20 @@ export function EditProfileForm({ initialUser }: { initialUser: InitialUserData 
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4 text-left animate-fadeIn">
+    <form onSubmit={handleSubmit} className="space-y-4 text-left animate-fadeIn" noValidate>
       {globalError && (
-        <div className="p-3.5 rounded-2xl bg-rose-50 dark:bg-rose-950/40 border border-rose-200 dark:border-rose-800 text-rose-600 dark:text-rose-300 text-sm flex items-start gap-2.5">
-          <AlertCircle className="w-5 h-5 shrink-0 mt-0.5 text-rose-500" />
+        <div className="p-3 rounded-xl bg-rose-500/10 border border-rose-500/20 text-rose-600 dark:text-rose-400 text-xs flex items-start gap-2">
+          <AlertCircle className="w-4 h-4 shrink-0 mt-0.5 text-rose-500" />
           <span>{globalError}</span>
         </div>
       )}
 
       {/* Profile Picture Section */}
-      <div className="flex flex-col items-center pb-3">
+      <div className="flex flex-col items-center pb-2">
         <div className="relative group cursor-pointer" onClick={() => fileInputRef.current?.click()}>
-          <Avatar name={name} src={avatarUrl} size="xl" className="ring-2 ring-amber-400/50 shadow-md shadow-amber-500/10" />
-          <div className="absolute inset-0 rounded-full bg-black/40 flex flex-col items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-opacity">
-            <Camera className="w-6 h-6 mb-1" />
+          <Avatar name={name} src={avatarUrl} size="xl" className="ring-2 ring-[#D5AD55]/70" />
+          <div className="absolute inset-0 rounded-full bg-black/50 flex flex-col items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-opacity">
+            <Camera className="w-5 h-5 mb-0.5" />
             <span className="text-[10px] font-semibold">Change</span>
           </div>
           <button
@@ -146,10 +142,11 @@ export function EditProfileForm({ initialUser }: { initialUser: InitialUserData 
               e.stopPropagation();
               fileInputRef.current?.click();
             }}
-            className="absolute bottom-0 right-0 w-8 h-8 rounded-full bg-brand-gradient text-white flex items-center justify-center shadow-md ring-2 ring-white dark:ring-surfaceCard-dark"
+            className="absolute bottom-0 right-0 w-7 h-7 rounded-full bg-[#D5AD55] text-[#111111] flex items-center justify-center shadow-sm ring-2 ring-white dark:ring-[#111111]"
             title="Upload photo"
+            aria-label="Upload photo"
           >
-            <Camera className="w-4 h-4" />
+            <Camera className="w-3.5 h-3.5" />
           </button>
         </div>
 
@@ -165,21 +162,21 @@ export function EditProfileForm({ initialUser }: { initialUser: InitialUserData 
           <p className="text-xs text-rose-500 mt-1">{errors.avatar}</p>
         )}
 
-        <div className="mt-3 flex items-center gap-2">
+        <div className="mt-2.5 flex items-center gap-2 text-xs">
           <button
             type="button"
             onClick={() => fileInputRef.current?.click()}
-            className="text-xs font-semibold text-primary dark:text-indigo-300 hover:text-indigo-600 dark:hover:text-indigo-200 hover:underline"
+            className="font-semibold text-[#D5AD55] hover:underline"
           >
             Upload Photo
           </button>
           {avatarUrl && (
             <>
-              <span className="text-muted-light dark:text-muted-dark text-xs">&bull;</span>
+              <span className="text-[#777777]">&bull;</span>
               <button
                 type="button"
                 onClick={() => setAvatarUrl("")}
-                className="text-xs font-semibold text-rose-500 hover:underline flex items-center gap-1"
+                className="font-semibold text-rose-500 hover:underline flex items-center gap-1"
               >
                 <Trash2 className="w-3 h-3" />
                 Remove
@@ -188,9 +185,9 @@ export function EditProfileForm({ initialUser }: { initialUser: InitialUserData 
           )}
         </div>
 
-        {/* Quick presets */}
-        <div className="mt-3 flex items-center gap-2">
-          <span className="text-[11px] text-muted-light dark:text-muted-dark">Or pick:</span>
+        {/* Quick Presets */}
+        <div className="mt-2.5 flex items-center gap-2">
+          <span className="text-[11px] text-[#777777] dark:text-[#A3A3A3]">Or choose:</span>
           <div className="flex gap-1.5">
             {PRESET_AVATARS.map((url, i) => (
               <img
@@ -198,8 +195,8 @@ export function EditProfileForm({ initialUser }: { initialUser: InitialUserData 
                 src={url}
                 alt={`Preset avatar ${i + 1}`}
                 onClick={() => setAvatarUrl(url)}
-                className={`w-7 h-7 rounded-full object-cover cursor-pointer transition-transform hover:scale-110 border-2 ${
-                  avatarUrl === url ? "border-primary scale-110" : "border-transparent"
+                className={`w-7 h-7 rounded-full object-cover cursor-pointer transition-transform hover:scale-110 border ${
+                  avatarUrl === url ? "border-[#D5AD55] ring-2 ring-[#D5AD55]/40 scale-105" : "border-transparent"
                 }`}
               />
             ))}
@@ -211,37 +208,38 @@ export function EditProfileForm({ initialUser }: { initialUser: InitialUserData 
       <Input
         label="Full Name"
         type="text"
+        placeholder="Enter your full name"
         value={name}
         onChange={(e) => {
           setName(e.target.value);
           if (errors.name) setErrors({ ...errors, name: "" });
         }}
         error={errors.name}
-        leftIcon={<User className="w-5 h-5" />}
+        leftIcon={<User className="w-4 h-4" />}
         required
       />
 
       {/* Email (Read-only) */}
       <div className="w-full space-y-1.5 text-left">
-        <label className="block text-sm font-semibold text-text-light dark:text-text-dark tracking-tight">
+        <label className="block text-xs font-semibold uppercase tracking-wider text-[#171717] dark:text-[#F7F7F5]">
           Email Address
         </label>
         <div className="relative flex items-center">
-          <div className="absolute left-3.5 flex items-center pointer-events-none text-muted-light dark:text-muted-dark">
-            <Mail className="w-5 h-5" />
+          <div className="absolute left-3.5 flex items-center pointer-events-none text-[#777777] dark:text-[#A3A3A3]">
+            <Mail className="w-4 h-4" />
           </div>
           <input
             type="email"
             value={initialUser.email}
             disabled
-            className="w-full min-h-[50px] text-base pl-11 pr-10 rounded-2xl bg-slate-100 dark:bg-slate-800/60 text-muted-light dark:text-muted-dark border border-border-light dark:border-border-dark cursor-not-allowed select-none opacity-85"
+            className="w-full min-h-[48px] text-base pl-11 pr-10 rounded-xl bg-black/5 dark:bg-white/5 text-[#777777] dark:text-[#A3A3A3] border border-[#E8E8E6] dark:border-[#2A2A2A] cursor-not-allowed select-none"
           />
-          <div className="absolute right-3.5 text-muted-light dark:text-muted-dark">
+          <div className="absolute right-3.5 text-[#777777] dark:text-[#A3A3A3]">
             <Lock className="w-4 h-4" />
           </div>
         </div>
-        <p className="text-[11px] text-muted-light dark:text-muted-dark pl-1">
-          Account email is managed by your organization.
+        <p className="text-[11px] text-[#777777] dark:text-[#A3A3A3] pl-0.5">
+          Email address is tied to your account identity.
         </p>
       </div>
 
@@ -257,7 +255,7 @@ export function EditProfileForm({ initialUser }: { initialUser: InitialUserData 
         }}
         error={errors.phone}
         hint="Optional - e.g. +91 98765 43210"
-        leftIcon={<Phone className="w-5 h-5" />}
+        leftIcon={<Phone className="w-4 h-4" />}
       />
 
       {/* Bio */}
@@ -265,48 +263,46 @@ export function EditProfileForm({ initialUser }: { initialUser: InitialUserData 
         <div className="flex items-center justify-between">
           <label
             htmlFor="bio"
-            className="block text-sm font-semibold text-text-light dark:text-text-dark tracking-tight"
+            className="block text-xs font-semibold uppercase tracking-wider text-[#171717] dark:text-[#F7F7F5]"
           >
             Personal Bio
           </label>
-          <span className="text-[11px] text-muted-light dark:text-muted-dark">
+          <span className="text-[11px] text-[#777777] dark:text-[#A3A3A3]">
             {bio.length}/250
           </span>
         </div>
-        <div className="relative">
-          <textarea
-            id="bio"
-            rows={3}
-            placeholder="Share a short summary about yourself..."
-            value={bio}
-            maxLength={250}
-            onChange={(e) => {
-              setBio(e.target.value);
-              if (errors.bio) setErrors({ ...errors, bio: "" });
-            }}
-            className="w-full text-base p-3.5 rounded-2xl bg-white dark:bg-surfaceCard-dark text-text-light dark:text-text-dark border border-border-light dark:border-border-dark focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary dark:focus:border-indigo-500 placeholder:text-muted-light/60 dark:placeholder:text-muted-dark/50 resize-none transition-all"
-          />
-        </div>
+        <textarea
+          id="bio"
+          rows={3}
+          placeholder="Share a short summary about yourself..."
+          value={bio}
+          maxLength={250}
+          onChange={(e) => {
+            setBio(e.target.value);
+            if (errors.bio) setErrors({ ...errors, bio: "" });
+          }}
+          className="w-full text-base p-3.5 rounded-xl bg-white dark:bg-[#1B1B1B] text-[#171717] dark:text-[#F7F7F5] border border-[#E8E8E6] dark:border-[#2A2A2A] focus:outline-none focus:border-[#D5AD55] focus:ring-2 focus:ring-[#D5AD55]/30 placeholder:text-[#777777]/60 dark:placeholder:text-[#777777] resize-none transition-colors"
+        />
         {errors.bio && (
-          <p className="text-xs font-medium text-rose-500 pl-1">{errors.bio}</p>
+          <p className="text-xs font-medium text-rose-600 dark:text-rose-400 pl-0.5">{errors.bio}</p>
         )}
       </div>
 
       {/* Action Buttons */}
-      <div className="pt-4 flex flex-col sm:flex-row gap-2.5">
+      <div className="pt-3 flex flex-col sm:flex-row gap-2.5">
         <Button
           type="submit"
           variant="primary"
-          size="lg"
+          size="md"
           isLoading={isSaving}
           className="flex-1"
-          rightIcon={<Check className="w-5 h-5 ml-1" />}
+          rightIcon={<Check className="w-4 h-4 ml-1" />}
         >
           Save Changes
         </Button>
 
         <Link href="/dashboard" className="flex-1">
-          <Button variant="ghost" size="lg" className="w-full">
+          <Button variant="secondary" size="md" className="w-full">
             Cancel
           </Button>
         </Link>
