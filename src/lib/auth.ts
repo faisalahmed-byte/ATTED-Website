@@ -41,6 +41,27 @@ export async function verifySessionToken(token: string): Promise<SessionPayload 
   }
 }
 
+export async function createPasswordResetToken(payload: { userId: string; email: string }): Promise<string> {
+  return new SignJWT({ ...payload, purpose: "password_reset" })
+    .setProtectedHeader({ alg: "HS256" })
+    .setIssuedAt()
+    .setExpirationTime("15m")
+    .sign(key);
+}
+
+export async function verifyPasswordResetToken(token: string): Promise<{ userId: string; email: string } | null> {
+  try {
+    const { payload } = await jwtVerify(token, key);
+    if (payload.purpose !== "password_reset") return null;
+    return {
+      userId: payload.userId as string,
+      email: payload.email as string,
+    };
+  } catch {
+    return null;
+  }
+}
+
 export async function getSession(): Promise<SessionPayload | null> {
   const cookieStore = await cookies();
   const token = cookieStore.get(SESSION_COOKIE_NAME)?.value;

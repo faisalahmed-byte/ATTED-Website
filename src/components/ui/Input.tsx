@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils";
 
 export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: string;
+  labelRight?: React.ReactNode;
   error?: string;
   hint?: string;
   leftIcon?: React.ReactNode;
@@ -18,6 +19,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       className,
       type = "text",
       label,
+      labelRight,
       error,
       hint,
       leftIcon,
@@ -35,13 +37,18 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
 
     return (
       <div className="w-full space-y-1.5 text-left">
-        {label && (
-          <label
-            htmlFor={inputId}
-            className="block text-xs font-semibold uppercase tracking-wider text-[#171717] dark:text-[#F7F7F5]"
-          >
-            {label}
-          </label>
+        {(label || labelRight) && (
+          <div className="flex items-center justify-between">
+            {label && (
+              <label
+                htmlFor={inputId}
+                className="block text-xs font-semibold uppercase tracking-wider text-[#171717] dark:text-[#F7F7F5]"
+              >
+                {label}
+              </label>
+            )}
+            {labelRight}
+          </div>
         )}
 
         <div className="relative flex items-center">

@@ -110,3 +110,24 @@ export async function updateUserProfile(
   });
   return user;
 }
+
+export async function updateUserPassword(
+  id: string,
+  passwordHash: string
+): Promise<SafeUser> {
+  const user = await prisma.user.update({
+    where: { id },
+    data: { passwordHash },
+    select: {
+      id: true,
+      name: true,
+      email: true,
+      avatarUrl: true,
+      phone: true,
+      bio: true,
+      createdAt: true,
+      updatedAt: true,
+    },
+  });
+  return user;
+}

@@ -35,6 +35,24 @@ export const loginSchema = z.object({
     .min(1, { message: "Password is required." }),
 });
 
+export const forgotPasswordSchema = z.object({
+  email: z
+    .string()
+    .trim()
+    .email({ message: "Please enter a valid email address." })
+    .toLowerCase(),
+});
+
+export const resetPasswordSchema = z.object({
+  token: z
+    .string()
+    .min(1, { message: "Reset token is required." }),
+  password: z
+    .string()
+    .min(8, { message: "Password must be at least 8 characters long." })
+    .max(100, { message: "Password cannot exceed 100 characters." }),
+});
+
 export const updateProfileSchema = z.object({
   name: z
     .string()
