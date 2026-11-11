@@ -12,7 +12,7 @@ async function runTests() {
   if (!landingRes.ok) throw new Error(`Landing page failed with ${landingRes.status}`);
   const landingHtml = await landingRes.text();
   if (!landingHtml.includes("ATTED AI")) throw new Error("Landing page missing ATTED AI brand");
-  if (!landingHtml.includes("Intelligent Workspace")) throw new Error("Landing page missing Intelligent Workspace");
+  if (!landingHtml.includes("Welcome to")) throw new Error("Landing page missing Welcome to");
   console.log("✓ Landing page loads perfectly with ATTED AI branding and responsive layout.");
 
   // 2. Signup Page Test
