@@ -249,14 +249,14 @@ export function EditProfileForm({ initialUser }: { initialUser: InitialUserData 
       <Input
         label="Phone Number"
         type="tel"
-        placeholder="+1 (555) 234-5678"
+        placeholder="+91 98765 43210"
         value={phone}
         onChange={(e) => {
           setPhone(e.target.value);
           if (errors.phone) setErrors({ ...errors, phone: "" });
         }}
         error={errors.phone}
-        hint="Optional - useful for mobile verifications"
+        hint="Optional - e.g. +91 98765 43210"
         leftIcon={<Phone className="w-5 h-5" />}
       />
 

@@ -28,9 +28,9 @@ export default async function DashboardPage() {
 
   const firstName = getFirstName(user.name);
   const displayName = formatName(user.name);
-  const formattedDate = new Date(user.createdAt).toLocaleDateString("en-US", {
-    month: "short",
+  const formattedDate = new Date(user.createdAt).toLocaleDateString("en-IN", {
     day: "numeric",
+    month: "short",
     year: "numeric",
   });
 

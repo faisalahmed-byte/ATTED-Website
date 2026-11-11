@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { Mail, Lock, Eye, EyeOff, ArrowRight, AlertCircle } from "lucide-react";
+import { Mail, Lock, ArrowRight, AlertCircle } from "lucide-react";
 import { MobileShell } from "@/components/layout/MobileShell";
 import { Header } from "@/components/layout/Header";
 import { Input } from "@/components/ui/Input";
@@ -14,7 +14,6 @@ export default function LoginPage() {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
 
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
   const [globalError, setGlobalError] = useState<string | null>(null);
@@ -105,7 +104,7 @@ export default function LoginPage() {
             <Input
               label="Email Address"
               type="email"
-              placeholder="alexander@example.com"
+              placeholder="faisal@example.com"
               value={email}
               onChange={(e) => {
                 setEmail(e.target.value);
@@ -119,7 +118,7 @@ export default function LoginPage() {
 
             <Input
               label="Password"
-              type={showPassword ? "text" : "password"}
+              type="password"
               placeholder="••••••••"
               value={password}
               onChange={(e) => {
@@ -128,20 +127,6 @@ export default function LoginPage() {
               }}
               error={errors.password}
               leftIcon={<Lock className="w-5 h-5" />}
-              rightIcon={
-                <button
-                  type="button"
-                  onClick={() => setShowPassword(!showPassword)}
-                  className="focus:outline-none hover:text-primary transition-colors"
-                  aria-label={showPassword ? "Hide password" : "Show password"}
-                >
-                  {showPassword ? (
-                    <EyeOff className="w-5 h-5" />
-                  ) : (
-                    <Eye className="w-5 h-5" />
-                  )}
-                </button>
-              }
               autoComplete="current-password"
               required
             />
