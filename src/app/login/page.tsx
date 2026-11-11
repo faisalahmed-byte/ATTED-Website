@@ -139,14 +139,6 @@ function LoginForm() {
 
         <Input
           label="Password"
-          labelRight={
-            <Link
-              href="/forgot-password"
-              className="text-xs font-semibold text-[#D5AD55] hover:underline"
-            >
-              Forgot Password?
-            </Link>
-          }
           type="password"
           placeholder="Enter your password"
           value={password}
@@ -159,6 +151,16 @@ function LoginForm() {
           autoComplete="current-password"
           required
         />
+
+        {/* Forgot Password Link directly below the password input */}
+        <div className="flex justify-end -mt-1 pb-1">
+          <Link
+            href="/forgot-password"
+            className="text-xs font-semibold text-[#D5AD55] hover:underline transition-colors"
+          >
+            Forgot Password?
+          </Link>
+        </div>
 
         <div className="pt-2">
           <Button
